@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Management System - Iteration 1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Project Management System</h1>
+    <p>Iteration 1 prototype: view assigned tasks and add new tasks.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>View My Assigned Tasks</h2>
+      <label for="currentUser">Current user</label>
+      <select id="currentUser">
+        <option>Student Team Member</option>
+        <option>Project Manager</option>
+        <option>Workplace Team Member</option>
+      </select>
+      <button id="filterBtn">Show My Tasks</button>
+      <button id="showAllBtn" class="secondary">Show All Tasks</button>
+    </section>
+
+    <section class="panel">
+      <h2>Add New Task</h2>
+      <form id="taskForm">
+        <label for="taskTitle">Task title</label>
+        <input id="taskTitle" type="text" placeholder="e.g. Prepare project report" required />
+
+        <label for="taskDescription">Short description</label>
+        <textarea id="taskDescription" placeholder="Enter basic task details" required></textarea>
+
+        <label for="taskDeadline">Deadline</label>
+        <input id="taskDeadline" type="date" required />
+
+        <button type="submit">Add Task</button>
+      </form>
+    </section>
+
+    
+  </main>
+
+  <footer>
+    <p>Implemented user stories: View My Assigned Tasks; Add New Tasks.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
