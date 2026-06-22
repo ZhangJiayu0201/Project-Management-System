@@ -51,3 +51,24 @@ I used three labels:
 | US6 | Identify Delayed Tasks |   4 days | done        |
 | US7 | Remove Completed Tasks |   2 days | todo        |
 | US8 | Share Task Updates     |   3 days | todo        |
+
+# 3. Completed vs Unfinished User Stories
+
+## Completed User Stories
+
+| ID  | User Story             |Estimate|Status|
+|---  |------------------------|--------|------|
+| US1 | View My Assigned Tasks | 5 days | done |
+| US2 | Assign Team Tasks      | 5 days | done |
+| US3 | Add New Tasks          | 3 days | done |
+| US5 | Track Project Progress | 4 days | done |
+| US6 | Identify Delayed Tasks | 4 days | done |
+
+## Unfinished User Stories
+
+| ID  | User Story             |Estimate| Status      |
+|-----|------------------------|--------|-------------|
+| US4 | Edit Task Information  | 3 days | in-progress |
+| US7 | Remove Completed Tasks | 2 days | todo        |
+| US8 | Share Task Updates     | 3 days | todo        |
+
