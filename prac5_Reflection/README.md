@@ -72,3 +72,16 @@ I used three labels:
 | US7 | Remove Completed Tasks | 2 days | todo        |
 | US8 | Share Task Updates     | 3 days | todo        |
 
+## 4. Actual Velocity of Iteration 1
+
+Actual velocity only counts completed user stories.
+
+| Completed User Story        |Estimate|
+|-----------------------------|--------|
+| US1: View My Assigned Tasks | 5 days |
+| US2: Assign Team Tasks      | 5 days |
+| US3: Add New Tasks          | 3 days |
+| US5: Track Project Progress | 4 days |
+| US6: Identify Delayed Tasks | 4 days |
+
+Actual velocity = 5 + 5 + 3 + 4 + 4 = 21 days
