@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Project Management System Tests</title>
+</head>
+<body>
+
+<h1>Project Management System Automated Tests</h1>
+<p>This page runs 15 automated tests in the browser.</p>
+
+<div id="result"></div>
+
+<script>
+  var result = document.getElementById("result");
+  var passed = 0;
+  var failed = 0;
+
+  function tasks() {
+    return [
+      { id: 1, title: "Task 1", member: "Student", done: true },
+      { id: 2, title: "Task 2", member: "Manager", done: false },
+      { id: 3, title: "Task 3", member: "Worker", done: false }
+    ];
+  }
+
+  function myTasks(list, member) {
+    var answer = [];
+
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].member === member) {
+        answer.push(list[i]);
+      }
+    }
+
+    return answer;
+  }
+
+  function allTasks(list) {
+    return list;
+  }
+
+  function assignTask(list, id, member) {
+    if (member === "") {
+      return false;
+    }
+
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        list[i].member = member;
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function addTask(list, title) {
+    if (title === "") {
+      return false;
+    }
+
+    list.push({
+      id: list.length + 1,
+      title: title,
+      member: "Student",
+      done: false
+    });
+
+    return true;
+  }
+
+  function editTask(list, id, title, done) {
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        if (title !== "") {
+          list[i].title = title;
+        }
+
+        list[i].done = done;
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function progress(list) {
+    var doneCount = 0;
+
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].done === true) {
+        doneCount++;
+      }
+    }
+
+    return {
+      total: list.length,
+      done: doneCount,
+      unfinished: list.length - doneCount,
+      percent: Math.round((doneCount / list.length) * 100)
+    };
+  }
+
+  function check(name, answer) {
+    if (answer) {
+      passed++;
+      result.innerHTML += "<div class='pass'>PASS: " + name + "</div>";
+    } else {
+      failed++;
+      result.innerHTML += "<div class='fail'>FAIL: " + name + "</div>";
+    }
+  }
+
+  var a = tasks();
+  check("US1-1 show Manager tasks", myTasks(a, "Manager").length === 1);
+
+  var b = tasks();
+  check("US1-2 show all tasks", allTasks(b).length === 3);
+
+  var c = tasks();
+  check("US1-3 show no task", myTasks(c, "None").length === 0);
+
+  var d = tasks();
+  check("US2-1 assign task", assignTask(d, 1, "Worker") === true);
+
+  var e = tasks();
+  check("US2-2 reject empty member", assignTask(e, 1, "") === false);
+
+  var f = tasks();
+  check("US2-3 reject wrong id", assignTask(f, 99, "Student") === false);
+
+  var g = tasks();
+  check("US3-1 add task", addTask(g, "New Task") === true && g.length === 4);
+
+  var h = tasks();
+  check("US3-2 reject empty title", addTask(h, "") === false);
+
+  var i = tasks();
+  addTask(i, "New Task");
+  check("US3-3 new task is not done", i[3].done === false);
+
+  var j = tasks();
+  check("US4-1 edit task", editTask(j, 2, "Updated Task", true) === true);
+
+  var k = tasks();
+  editTask(k, 2, "", true);
+  check("US4-2 edit only done status", k[1].title === "Task 2" && k[1].done === true);
+
+  var l = tasks();
+  check("US4-3 reject wrong id", editTask(l, 99, "Wrong", true) === false);
+
+  var m = tasks();
+  var p1 = progress(m);
+  check("US5-1 count total", p1.total === 3);
+
+  var n = tasks();
+  var p2 = progress(n);
+  check("US5-2 count done and unfinished", p2.done === 1 && p2.unfinished === 2);
+
+  var o = tasks();
+  var p3 = progress(o);
+  check("US5-3 calculate percent", p3.percent === 33);
+
+  result.innerHTML += "<h2>Summary</h2>";
+  result.innerHTML += "<p>Passed: " + passed + "</p>";
+  result.innerHTML += "<p>Failed: " + failed + "</p>";
+</script>
+
+</body>
+</html>
