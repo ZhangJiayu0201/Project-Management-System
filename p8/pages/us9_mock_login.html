@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>US9 Mock User Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>US9 Mock User Login</h1>
+
+  <p>Status: Completed in Iteration 3.</p>
+
+  <h2>User Story</h2>
+  <p>The system can test login by using a mock user object instead of a real database.</p>
+
+  <h2>Simple UI Design</h2>
+  <div class="card">
+    <p>Username</p>
+    <input type="text" value="manager">
+    <p>Password</p>
+    <input type="password" value="222">
+    <button>Login</button>
+    <p>Result: Login success, role = Manager</p>
+  </div>
+
+  <h2>TDD Tests</h2>
+  <ul>
+    <li>Login succeeds with correct account</li>
+    <li>Login fails with wrong password</li>
+    <li>Login fails with unknown user</li>
+  </ul>
+
+  <p><a href="index.html">Back to main page</a></p>
+</main>
+</body>
+</html>
