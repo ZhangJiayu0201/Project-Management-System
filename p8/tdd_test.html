@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Practical 8 TDD Mock Tests</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    .pass {
+      color: green;
+      background: white;
+      padding: 8px;
+      margin: 6px;
+    }
+
+    .fail {
+      color: red;
+      background: white;
+      padding: 8px;
+      margin: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Practical 8 Tests</h1>
+
+<div id="result"></div>
+
+<script>
+
+  function TaskService() {
+    this.store = null;
+  }
+
+  TaskService.prototype.setStore = function(store) {
+    this.store = store;
+  };
+
+  TaskService.prototype.removeCompletedTasks = function() {
+    var tasks = this.store.getTasks();
+    var newTasks = [];
+
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].done === false) {
+        newTasks.push(tasks[i]);
+      }
+    }
+
+    this.store.saveTasks(newTasks);
+    return newTasks;
+  };
+
+  TaskService.prototype.addUpdate = function(taskId, text) {
+    if (text === "") {
+      return false;
+    }
+
+    var task = this.store.getTask(taskId);
+
+    if (task === null) {
+      return false;
+    }
+
+    task.update = text;
+    this.store.saveTask(task);
+    return true;
+  };
+
+  TaskService.prototype.getUpdate = function(taskId) {
+    var task = this.store.getTask(taskId);
+
+    if (task === null) {
+      return "";
+    }
+
+    return task.update;
+  };
+
+  function LoginService() {
+    this.userStore = null;
+  }
+
+  LoginService.prototype.setUserStore = function(userStore) {
+    this.userStore = userStore;
+  };
+
+  LoginService.prototype.login = function(name, pass) {
+    var user = this.userStore.findUser(name);
+
+    if (user === null) {
+      return false;
+    }
+
+    if (user.pass === pass) {
+      return true;
+    }
+
+    return false;
+  };
+
+
+
+  function MockTaskStore() {
+    this.tasks = [
+      { id: 1, title: "Task 1", done: true, update: "" },
+      { id: 2, title: "Task 2", done: false, update: "" },
+      { id: 3, title: "Task 3", done: false, update: "" }
+    ];
+  }
+
+  MockTaskStore.prototype.getTasks = function() {
+    return this.tasks;
+  };
+
+  MockTaskStore.prototype.saveTasks = function(tasks) {
+    this.tasks = tasks;
+  };
+
+  MockTaskStore.prototype.getTask = function(id) {
+    for (var i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].id === id) {
+        return this.tasks[i];
+      }
+    }
+
+    return null;
+  };
+
+  MockTaskStore.prototype.saveTask = function(task) {
+    for (var i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].id === task.id) {
+        this.tasks[i] = task;
+      }
+    }
+  };
+
+  function MockUserStore() {
+    this.users = [
+      { name: "student", pass: "111", role: "Student" },
+      { name: "manager", pass: "222", role: "Manager" }
+    ];
+  }
+
+  MockUserStore.prototype.findUser = function(name) {
+    for (var i = 0; i < this.users.length; i++) {
+      if (this.users[i].name === name) {
+        return this.users[i];
+      }
+    }
+
+    return null;
+  };
+
+
+
+  var result = document.getElementById("result");
+  var passed = 0;
+  var failed = 0;
+
+  function check(name, answer) {
+    if (answer) {
+      passed++;
+      result.innerHTML += "<div class='pass'>PASS: " + name + "</div>";
+    } else {
+      failed++;
+      result.innerHTML += "<div class='fail'>FAIL: " + name + "</div>";
+    }
+  }
+
+
+  var taskStore1 = new MockTaskStore();
+  var taskService1 = new TaskService();
+  taskService1.setStore(taskStore1);
+  var afterRemove = taskService1.removeCompletedTasks();
+
+  check("US7-1 remove completed task", afterRemove.length === 2);
+
+  var taskStore2 = new MockTaskStore();
+  var taskService2 = new TaskService();
+  taskService2.setStore(taskStore2);
+  var keptTasks = taskService2.removeCompletedTasks();
+
+  check("US7-2 keep unfinished tasks", keptTasks[0].done === false && keptTasks[1].done === false);
+
+  var taskStore3 = new MockTaskStore();
+  taskStore3.tasks = [
+    { id: 1, title: "Task 1", done: false, update: "" },
+    { id: 2, title: "Task 2", done: false, update: "" }
+  ];
+
+  var taskService3 = new TaskService();
+  taskService3.setStore(taskStore3);
+
+  check("US7-3 no completed task to remove", taskService3.removeCompletedTasks().length === 2);
+
+
+  var taskStore4 = new MockTaskStore();
+  var taskService4 = new TaskService();
+  taskService4.setStore(taskStore4);
+
+  check("US8-1 save valid update", taskService4.addUpdate(2, "Started task") === true);
+
+  var taskStore5 = new MockTaskStore();
+  var taskService5 = new TaskService();
+  taskService5.setStore(taskStore5);
+
+  check("US8-2 reject empty update", taskService5.addUpdate(2, "") === false);
+
+  var taskStore6 = new MockTaskStore();
+  var taskService6 = new TaskService();
+  taskService6.setStore(taskStore6);
+  taskService6.addUpdate(2, "Finished update field");
+
+  check("US8-3 show latest update", taskService6.getUpdate(2) === "Finished update field");
+
+
+  var userStore1 = new MockUserStore();
+  var loginService1 = new LoginService();
+  loginService1.setUserStore(userStore1);
+
+  check("US9-1 login with correct student account", loginService1.login("student", "111") === true);
+
+  var userStore2 = new MockUserStore();
+  var loginService2 = new LoginService();
+  loginService2.setUserStore(userStore2);
+
+  check("US9-2 reject wrong password", loginService2.login("student", "wrong") === false);
+
+  var userStore3 = new MockUserStore();
+  var loginService3 = new LoginService();
+  loginService3.setUserStore(userStore3);
+
+  check("US9-3 reject unknown user", loginService3.login("none", "111") === false);
+
+  result.innerHTML += "<h2>Summary</h2>";
+  result.innerHTML += "<p>Passed: " + passed + "</p>";
+  result.innerHTML += "<p>Failed: " + failed + "</p>";
+</script>
+
+</body>
+</html>
