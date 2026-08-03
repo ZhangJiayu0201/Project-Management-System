@@ -39,13 +39,13 @@ function showTasks() {
         "<td>" + tasks[i].id + "</td>" +
         "<td><input id='title" + tasks[i].id + "' value='" + tasks[i].title + "'></td>" +
         "<td><select id='member" + tasks[i].id + "'><option>Student</option><option>Manager</option><option>Worker</option></select></td>" +
-        "<td><select id='done" + tasks[i].id + "'><option>Progress</option><option>Done</option></select></td>" +
+        "<td><select id='done" + tasks[i].id + "'><option value='false'>Progress</option><option value='true'>Done</option></select></td>" +
         "<td>" + tasks[i].deadline + "</td>" +
         "<td><input id='update" + tasks[i].id + "' value='" + tasks[i].update + "'></td>" +
         "<td><button onclick='editTask(" + tasks[i].id + ")'>Save</button></td>";
       body.appendChild(row);
       document.getElementById("member" + tasks[i].id).value = tasks[i].member;
-      document.getElementById("done" + tasks[i].id).value = String(tasks[i].done);
+      document.getElementById("done" + tasks[i].id).value = tasks[i].done ? "true" : "false";
     }
   }
 }
