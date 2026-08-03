@@ -39,7 +39,7 @@ function showTasks() {
         "<td>" + tasks[i].id + "</td>" +
         "<td><input id='title" + tasks[i].id + "' value='" + tasks[i].title + "'></td>" +
         "<td><select id='member" + tasks[i].id + "'><option>Student</option><option>Manager</option><option>Worker</option></select></td>" +
-        "<td><select id='done" + tasks[i].id + "'><option>false</option><option>true</option></select></td>" +
+        "<td><select id='done" + tasks[i].id + "'><option>Progress</option><option>Done</option></select></td>" +
         "<td>" + tasks[i].deadline + "</td>" +
         "<td><input id='update" + tasks[i].id + "' value='" + tasks[i].update + "'></td>" +
         "<td><button onclick='editTask(" + tasks[i].id + ")'>Save</button></td>";
