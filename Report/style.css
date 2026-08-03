@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f3f4f6;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
   margin: 0;
   padding: 20px;
   color: #222;
@@ -12,67 +12,121 @@ main {
   background: white;
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 header {
-  border-bottom: 1px solid #ddd;
+  background: #1e3a8a;
+  color: white;
+  padding: 22px;
+  border-radius: 8px;
   margin-bottom: 15px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin-bottom: 0;
 }
 
 nav {
   margin: 15px 0;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
 }
 
 nav a {
   display: inline-block;
-  background: #e5e7eb;
+  background: white;
   color: #111;
   padding: 8px 10px;
   margin: 4px;
   text-decoration: none;
   border-radius: 4px;
+  border: 1px solid #d1d5db;
+  font-weight: bold;
+}
+
+nav a:hover {
+  background: #1e3a8a;
+  color: white;
 }
 
 section {
   margin-top: 30px;
 }
 
+h2 {
+  border-left: 6px solid #1e3a8a;
+  padding-left: 10px;
+}
+
 .box {
   border: 1px solid #ddd;
+  border-left: 5px solid #2563eb;
   background: #fafafa;
   padding: 12px;
   margin: 12px 0;
   border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
 }
 
-input, select, button {
+input,
+select,
+button {
   padding: 8px;
   margin: 4px;
 }
 
+input,
+select {
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+}
+
 button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
 }
 
 table {
   border-collapse: collapse;
   width: 100%;
   margin: 12px 0;
+  background: white;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
 }
 
 th {
-  background: #eee;
+  background: #1e3a8a;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background: #f8fafc;
 }
 
 img {
   max-width: 100%;
   border: 1px solid #ddd;
+  border-radius: 6px;
   margin-top: 8px;
 }
 
@@ -81,6 +135,7 @@ img {
   background: #f0fff0;
   padding: 6px;
   margin: 5px 0;
+  border-left: 5px solid green;
 }
 
 .fail {
@@ -88,4 +143,5 @@ img {
   background: #fff0f0;
   padding: 6px;
   margin: 5px 0;
+  border-left: 5px solid red;
 }
