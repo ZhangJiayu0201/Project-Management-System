@@ -103,7 +103,7 @@ function showProgress() {
 }
 
 function showDelayed() {
-  var today = "2026-07-01";
+  var today = new Date().toISOString().slice(0, 10);
   var delayed = [];
   for (var i = 0; i < tasks.length; i++) {
     if (!tasks[i].done && tasks[i].deadline < today) {
