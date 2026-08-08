@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Management System - App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header>
+<h1>Project Management System</h1>
+<p>Simple task system for student team project.</p>
+</header>
+<nav>
+<a href="index.html">Sign In</a>
+<a href="app.html">App</a>
+<a href="requirements.html">Requirements</a>
+<a href="design.html">Design</a>
+<a href="testing.html">Testing</a>
+<a href="tools.html">Tools</a>
+</nav>
+
+<section>
+<div class="top-line">
+<h2>App</h2>
+<button onclick="logout()">Logout</button>
+</div>
+<p id="currentUserText"></p>
+<div class="box">
+<h3>Add Task</h3>
+<input id="newTitle" placeholder="task title">
+<select id="newMember">
+<option>Student</option>
+<option>Manager</option>
+<option>Worker</option>
+</select>
+<input id="newDeadline" type="date">
+<button onclick="addTask()">Add Task</button>
+</div>
+<div class="box">
+<h3>Task List</h3>
+<select id="filterMember">
+<option>All</option>
+<option>Student</option>
+<option>Manager</option>
+<option>Worker</option>
+</select>
+<button onclick="showTasks()">View Tasks</button>
+<button onclick="showProgress()">Progress</button>
+<button onclick="showDelayed()">Delayed</button>
+<button onclick="removeCompleted()">Remove Completed</button>
+<p id="appMsg"></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Task</th>
+<th>Member</th>
+<th>Status</th>
+<th>Deadline</th>
+<th>Update</th>update
+<th>Save</th>
+</tr>
+</thead>
+<tbody id="taskBody"></tbody>
+</table>
+</div>
+</section>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>

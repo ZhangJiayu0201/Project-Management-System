@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Project Management System - Sign In</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header>
+<h1>Project Management System</h1>
+<p>Simple task system for student team project.</p>
+</header>
+<nav>
+<a href="index.html">Sign In</a>
+<a href="app.html">App</a>
+<a href="requirements.html">Requirements</a>
+<a href="design.html">Design</a>
+<a href="testing.html">Testing</a>
+<a href="tools.html">Tools</a>
+</nav>
+
+<section class="signin-page">
+<h2>Sign In</h2>
+<div class="box signin-box">
+  <h3>Login</h3>
+
+  <input id="loginName" type="email" placeholder="email">
+  <input id="loginPass" type="password" placeholder="password">
+
+  <button onclick="login()">Sign In</button>
+
+  <p id="loginMsg"></p>
+</div>
+
+<div class="box signin-box">
+  <h3>Register</h3>
+
+  <input id="regName" type="email" placeholder="new email">
+  <input id="regPass" type="password" placeholder="new password">
+
+  <select id="regRole">
+    <option>Student</option>
+    <option>Manager</option>
+    <option>Worker</option>
+  </select>
+
+  <button onclick="registerUser()">Register</button>
+
+  <p id="regMsg"></p>
+</div>
+</section>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="app.js"></script>
+</body>
+</html>
